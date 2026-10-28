@@ -58,31 +58,56 @@ select option{background:#fff}
 .range::-webkit-slider-thumb{appearance:none;width:21px;height:21px;background:var(--primary);border:4px solid var(--primary-container);border-radius:50%;box-shadow:0 0 0 2px var(--primary)}
 .range::-moz-range-thumb{width:14px;height:14px;background:var(--primary);border:4px solid var(--primary-container);border-radius:50%;box-shadow:0 0 0 2px var(--primary)}
 .range-ends{display:flex;justify-content:space-between;font-size:12px;color:var(--muted)}
-.helper{display:flex;align-items:flex-start;gap:9px;margin-top:13px;border-radius:13px;padding:11px 12px;background:var(--surface-container);color:var(--muted);font-size:12px;line-height:1.45}
-.helper svg{flex:none;width:17px;height:17px;color:var(--secondary)}
-.toggle-row{display:flex;align-items:center;justify-content:space-between;gap:15px;cursor:pointer;padding:1px 0}
-.toggle-title{font-size:14px;font-weight:650}
-.toggle-subtitle{margin-top:4px;font-size:12px;color:var(--muted);line-height:1.4}
-.switch-control{appearance:none;position:relative;flex:none;width:52px;height:32px;border:2px solid #7d7883;background:#e6e0e9;border-radius:30px;transition:background .18s,border-color .18s;cursor:pointer}
-.switch-control:after{content:"";position:absolute;left:6px;top:50%;transform:translateY(-50%);height:16px;width:16px;background:#79747e;border-radius:50%;transition:left .18s,width .18s,background .18s}
-.switch-control:checked{background:var(--primary);border-color:var(--primary)}
-.switch-control:checked:after{left:21px;width:23px;height:23px;background:#fff}
 .results-heading{display:flex;justify-content:space-between;gap:12px;align-items:center}
 .status{font-size:12px;font-weight:650;padding:5px 10px;border-radius:50px;background:var(--success-bg);color:var(--success);white-space:nowrap}
 .status.long{background:var(--warn-bg);color:var(--warn)}
-.cost-hero{margin-top:16px;border-radius:23px;background:var(--primary-container);color:var(--on-primary-container);padding:24px;min-height:176px;position:relative;overflow:hidden}
-.cost-hero:before{content:"";position:absolute;right:-45px;top:-72px;border:27px solid rgba(103,80,164,.08);border-radius:50%;height:210px;width:210px;pointer-events:none}
-.cost-hero .eyebrow{font-size:13px;font-weight:600;position:relative}
-.cost{display:flex;gap:10px;align-items:baseline;flex-wrap:wrap;margin:12px 0 6px;position:relative}
-.cost .figure{font-size:clamp(36px,4.6vw,54px);font-weight:750;line-height:1.05;letter-spacing:-1.8px;font-variant-numeric:tabular-nums}
-.cost .unit{font-size:18px;font-weight:500}
-.usd{font-size:13px;color:#524270;position:relative}
-.compare-grid{margin-top:14px;display:grid;grid-template-columns:1fr 1fr;gap:10px}
-.compare-tile{border:1px solid #e3dfeb;background:#faf9ff;border-radius:17px;padding:15px;min-width:0}
-.compare-tile .label{font-size:12px;color:var(--muted);margin-bottom:5px}
-.compare-tile strong{display:block;font-size:24px;letter-spacing:-.6px;line-height:1.25;font-variant-numeric:tabular-nums;white-space:nowrap}
-.compare-tile small{font-size:12px;color:var(--muted)}
-.compare-tile.old strong{color:var(--warn)}
+.compare-grid{margin-top:16px;display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.compare-card{border-radius:20px;padding:20px 18px;min-width:0;position:relative;display:flex;flex-direction:column;justify-content:space-between}
+.compare-card .card-head{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:12px}
+.compare-card .card-label{font-size:13px;font-weight:650;letter-spacing:-.2px}
+.compare-card .card-badge{font-size:11px;font-weight:700;padding:3px 8px;border-radius:12px;letter-spacing:.2px}
+.compare-card .card-cost{display:flex;align-items:baseline;gap:6px;flex-wrap:wrap;margin:4px 0 6px}
+.compare-card .figure{font-variant-numeric:tabular-nums;font-weight:750;letter-spacing:-1px;line-height:1.05}
+.compare-card .unit{font-size:13px;font-weight:500}
+.compare-card .card-usd{font-size:12px;line-height:1.3}
+
+/* Carte Avec cache - Mise en valeur principale (Hero Material 3) */
+.compare-card.cached{
+  background:var(--primary-container);
+  color:var(--on-primary-container);
+  border:2px solid rgba(103,80,164,.28);
+  box-shadow:0 6px 20px rgba(103,80,164,.12);
+  overflow:hidden;
+}
+.compare-card.cached:before{
+  content:"";
+  position:absolute;
+  right:-30px;
+  top:-40px;
+  border:22px solid rgba(103,80,164,.08);
+  border-radius:50%;
+  height:130px;
+  width:130px;
+  pointer-events:none;
+}
+.compare-card.cached .card-label{color:var(--on-primary-container);font-size:14px}
+.compare-card.cached .card-badge{background:var(--primary);color:#fff}
+.compare-card.cached .figure{font-size:clamp(30px,3.8vw,42px);color:var(--on-primary-container)}
+.compare-card.cached .unit{color:var(--primary);font-weight:600}
+.compare-card.cached .card-usd{color:#574574;font-weight:500}
+
+/* Carte Sans cache - Standard / référence secondaire */
+.compare-card.fresh{
+  background:var(--surface-container);
+  color:var(--text);
+  border:1px solid var(--outline-variant);
+}
+.compare-card.fresh .card-label{color:var(--muted)}
+.compare-card.fresh .card-badge{background:rgba(121,116,126,.15);color:var(--muted)}
+.compare-card.fresh .figure{font-size:clamp(24px,3vw,32px);color:var(--warn)}
+.compare-card.fresh .unit{color:var(--muted)}
+.compare-card.fresh .card-usd{color:var(--muted)}
+
 .saving{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:12px;padding:12px 15px;border-radius:15px;background:var(--success-bg);font-size:13px;color:var(--success)}
 .saving strong{font-size:16px;white-space:nowrap;font-variant-numeric:tabular-nums}
 .context-indicator{margin-top:19px;padding:17px;background:var(--surface-container);border-radius:19px}
@@ -120,7 +145,7 @@ details[open] summary:after{content:"−"}
 .mobile-dock.visible{display:flex}
 
 @media(max-width:850px){.layout{grid-template-columns:1fr}.results{grid-column:1;grid-row:1;position:static}.controls{grid-column:1;grid-row:2}.app{max-width:680px}}
-@media(max-width:580px){.app{padding:17px 13px 35px}.header{align-items:center;gap:9px;margin-bottom:16px}.brand{gap:10px}.brand-logo{width:42px;height:42px;border-radius:14px}h1{font-size:22px;letter-spacing:-.5px}.tagline{font-size:11px}.top-actions .action-label{display:none}.icon-button{width:40px;justify-content:center;padding:0}.sheet{border-radius:22px}.results{padding:19px 17px}.controls{padding:21px 17px}.cost-hero{min-height:142px;padding:20px}.cost .figure{font-size:43px}.cost .unit{font-size:16px}.compare-tile{padding:13px 11px}.compare-tile strong{font-size:20px}.context-indicator{padding:14px}.knowledge{padding:2px 16px}.bottom{display:block}.bottom span{display:block;margin-bottom:8px}}
+@media(max-width:580px){.app{padding:17px 13px 35px}.header{align-items:center;gap:9px;margin-bottom:16px}.brand{gap:10px}.brand-logo{width:42px;height:42px;border-radius:14px}h1{font-size:22px;letter-spacing:-.5px}.tagline{font-size:11px}.top-actions .action-label{display:none}.icon-button{width:40px;justify-content:center;padding:0}.sheet{border-radius:22px}.results{padding:19px 17px}.controls{padding:21px 17px}.compare-grid{grid-template-columns:1fr;gap:10px}.compare-card{padding:16px 14px}.context-indicator{padding:14px}.knowledge{padding:2px 16px}.bottom{display:block}.bottom span{display:block;margin-bottom:8px}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*:before,*:after{transition:none!important}}
 </style>
 </head>
@@ -135,7 +160,7 @@ details[open] summary:after{content:"−"}
   </header>
   <div class="layout">
     <section class="sheet controls" aria-labelledby="controls-title">
-      <div class="section-top"><h2 id="controls-title">Configuration</h2><span class="pill">3 réglages + 1 option</span></div>
+      <div class="section-top"><h2 id="controls-title">Configuration</h2><span class="pill">3 réglages</span></div>
       <div class="field">
         <label class="field-label" for="model">Modèle</label>
         <div class="select-wrap"><select id="model"></select></div>
@@ -143,32 +168,51 @@ details[open] summary:after{content:"−"}
       </div>
       <div class="field">
         <label class="field-label" for="capacity">Limite de la context window</label>
-        <div class="select-wrap"><select id="capacity"><option value="128000">128K tokens</option><option value="200000">200K tokens</option><option value="272000">272K tokens</option><option value="1000000">1 million de tokens</option><option value="1128000" selected>1,1M tokens (ta capture)</option></select></div>
+        <div class="select-wrap"><select id="capacity"><option value="128000">128K tokens</option><option value="200000">200K tokens</option><option value="272000">272K tokens</option><option value="1000000">1 million de tokens</option><option value="1128000" selected>1,128M tokens</option></select></div>
         <p class="field-description">Capacité maximale, pas quantité facturée.</p>
       </div>
       <div class="field">
-        <div class="occupancy-header"><div><label class="field-label" for="cached" style="margin-bottom:4px">Tokens du contexte actuel</label><div class="small-label">Part estimée réutilisable depuis le cache</div></div><output class="amount" for="cached" id="cached-value">202,5K</output></div>
-        <input class="range" id="cached" type="range" min="0" max="958800" step="500" value="202500" aria-label="Tokens du contexte actuel réutilisés depuis le cache">
+        <div class="occupancy-header"><div><label class="field-label" for="cached" style="margin-bottom:4px">Tokens du contexte actuel</label><div class="small-label">Part estimée réutilisable depuis le cache</div></div><output class="amount" for="cached" id="cached-value">200K</output></div>
+        <input class="range" id="cached" type="range" min="0" max="958800" step="500" value="200000" aria-label="Tokens du contexte actuel réutilisés depuis le cache">
         <div class="range-ends"><span>0</span><span id="max-cached">958,8K tokens disponibles</span></div>
-        <div class="helper"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 10.5v5M12 7.8h.01"/></svg><span>Ta capture affiche <b>202,5K tokens de contexte actif</b>. Les 14,7M tokens « cached » correspondent au cumul de la session, pas au contexte actuel.</span></div>
       </div>
-      <hr class="divider">
-      <label class="toggle-row" for="compare"><div><div class="toggle-title">Comparer avec / sans cache</div><div class="toggle-subtitle">Voir l’économie liée à la réutilisation du contexte.</div></div><input type="checkbox" role="switch" class="switch-control" id="compare" checked></label>
     </section>
     <section class="sheet results" aria-labelledby="results-title">
       <div class="results-heading"><h2 id="results-title">Coût estimé par appel</h2><span class="status" id="status">Tarif standard</span></div>
-      <div class="cost-hero" aria-live="polite" aria-atomic="true"><div class="eyebrow">Entrée avec cache</div><div class="cost"><span class="figure" id="cached-credits">4,05</span><span class="unit">AI credits</span></div><div class="usd" id="cached-usd">0,0405 $ US</div></div>
-      <div id="comparison" class="compare-grid"><div class="compare-tile"><div class="label">Avec cache</div><strong id="comparison-cached">4,05</strong><small>AI credits</small></div><div class="compare-tile old"><div class="label">Sans cache</div><strong id="fresh-credits">40,50</strong><small>AI credits</small></div></div>
+      <div class="compare-grid">
+        <div class="compare-card cached" aria-live="polite">
+          <div class="card-head">
+            <span class="card-label">Avec cache</span>
+            <span class="card-badge">Optimisé</span>
+          </div>
+          <div class="card-cost">
+            <span class="figure" id="cached-credits">4,00</span>
+            <span class="unit">AI credits</span>
+          </div>
+          <div class="card-usd" id="cached-usd">0,0400 $ US</div>
+        </div>
+        <div class="compare-card fresh">
+          <div class="card-head">
+            <span class="card-label">Sans cache</span>
+            <span class="card-badge">Plein tarif</span>
+          </div>
+          <div class="card-cost">
+            <span class="figure" id="fresh-credits">40,00</span>
+            <span class="unit">AI credits</span>
+          </div>
+          <div class="card-usd" id="fresh-usd">0,4000 $ US</div>
+        </div>
+      </div>
       <div id="saving" class="saving"><span>Économie grâce au cache</span><strong id="saved">−90 %</strong></div>
-      <div class="context-indicator"><div class="row"><span>Occupation de la fenêtre</span><b id="occupation">18 %</b></div><div class="segment-bar" role="img" aria-label="Contexte utilisé, espace disponible, réserve buffer"><span class="used" id="bar-used"></span><span class="free" id="bar-free"></span><span class="buffer" id="bar-buffer"></span></div><div class="legend"><span><i style="background:var(--primary)"></i>Utilisé <b id="label-used">202,5K</b></span><span><i style="background:#8cbba4"></i>Libre <b id="label-free">756,3K</b></span><span><i style="background:#c4becb"></i>Buffer ≈ 15 %</span></div></div>
+      <div class="context-indicator"><div class="row"><span>Occupation de la fenêtre</span><b id="occupation">18 %</b></div><div class="segment-bar" role="img" aria-label="Contexte utilisé, espace disponible, réserve buffer"><span class="used" id="bar-used"></span><span class="free" id="bar-free"></span><span class="buffer" id="bar-buffer"></span></div><div class="legend"><span><i style="background:var(--primary)"></i>Utilisé <b id="label-used">200K</b></span><span><i style="background:#8cbba4"></i>Libre <b id="label-free">758,8K</b></span><span><i style="background:#c4becb"></i>Buffer ≈ 15 %</span></div></div>
       <div class="tier-note" id="tier-note">Seuil de tarification Long context : <strong>272K tokens</strong>.</div>
       <p class="disclaimer">Estimation des <strong>tokens d’entrée seulement</strong> : hors sorties, nouveaux tokens et éventuelles écritures du cache. 1 AI credit = 0,01 $.</p>
     </section>
   </div>
   <section class="sheet knowledge" aria-label="Comprendre les calculs">
-    <details><summary>Quelle différence entre « avec cache » et « sans cache » ?</summary><div class="details-body"><p><b>Avec cache</b> : Copilot réutilise un préfixe d’entrée déjà traité par le même modèle ; ces tokens bénéficient du tarif <i>Cached input</i> lorsqu’ils donnent réellement lieu à un hit de cache.</p><p><b>Sans cache</b> : le même volume de tokens est traité au tarif d’entrée normal. Cela peut arriver après un changement de modèle ou de taille de contexte, ou après expiration du cache. Le simulateur compare ces deux cas extrêmes ; un appel réel peut mélanger tokens cachés et non cachés.</p><p>Sur ton screenshot, les 14,7M cached sont un <b>cumul</b>. La valeur de 202,5K est une approximation de l’entrée actuelle, pas une preuve que 100 % sont effectivement mis en cache.</p></div></details>
+    <details><summary>Quelle différence entre « avec cache » et « sans cache » ?</summary><div class="details-body"><p><b>Avec cache</b> : Copilot réutilise un préfixe d’entrée déjà traité par le même modèle ; ces tokens bénéficient du tarif <i>Cached input</i> lorsqu’ils donnent réellement lieu à un hit de cache.</p><p><b>Sans cache</b> : le même volume de tokens est traité au tarif d’entrée normal. Cela peut arriver après un changement de modèle ou de taille de contexte, ou après expiration du cache. Le simulateur compare ces deux cas extrêmes ; un appel réel peut mélanger tokens cachés et non cachés.</p><p>Le total de tokens « cached » affiché dans l’historique d’une session est un <b>cumul</b>. Le simulateur estime ici le coût d’un <b>appel unique</b> à partir du contexte actif.</p></div></details>
     <details><summary>Le buffer de contexte est-il facturé ?</summary><div class="details-body"><p>Non. Le <b>buffer</b> est une capacité réservée, non un volume de tokens automatiquement transmis. Le simulateur réserve approximativement <b>15 % de la fenêtre</b> et limite ainsi le curseur à 85 %.</p><p>Les tokens effectivement envoyés ou générés sont facturés selon leur catégorie. Le buffer peut déclencher une compaction plus tôt, mais <b>ne fait pas franchir à lui seul un palier Long context</b>.</p></div></details>
-    <details><summary>Que comprend exactement le prix affiché ?</summary><div class="details-body"><p>Le calcul est <b>tokens sélectionnés ÷ 1 000 000 × tarif du modèle × 100</b>, exprimé en AI credits. Il utilise le tarif d’entrée cachée ou non cachée selon le scénario.</p><p>Lorsque les tokens d’entrée dépassent le seuil Long context, le tarif de ce palier s’applique à l’intégralité de l’entrée simulée. Les prix de <b>cache write</b> et de <b>sortie</b> ne sont volontairement pas estimés pour conserver quatre réglages simples. Les résultats ne sont pas une facture hors forfait : ils représentent la consommation théorique.</p></div></details>
+    <details><summary>Que comprend exactement le prix affiché ?</summary><div class="details-body"><p>Le calcul est <b>tokens sélectionnés ÷ 1 000 000 × tarif du modèle × 100</b>, exprimé en AI credits. Il utilise le tarif d’entrée cachée ou non cachée selon le scénario.</p><p>Lorsque les tokens d’entrée dépassent le seuil Long context, le tarif de ce palier s’applique à l’intégralité de l’entrée simulée. Les prix de <b>cache write</b> et de <b>sortie</b> ne sont volontairement pas estimés pour conserver des réglages simples. Les résultats ne sont pas une facture hors forfait : ils représentent la consommation théorique.</p></div></details>
   </section>
   <footer class="bottom"><span>Simulateur indépendant · Tarifs GitHub Copilot vérifiés le 26 octobre 2026 · Disponibilité des context windows selon client et modèle.</span><span><a href="https://docs.github.com/en/copilot/reference/copilot-billing/models-and-pricing" target="_blank" rel="noopener noreferrer">Tarifs officiels</a> · <a href="https://docs.github.com/en/copilot/tutorials/optimize-ai-usage" target="_blank" rel="noopener noreferrer">Gestion du cache</a></span></footer>
 </main>
@@ -204,7 +248,7 @@ const creditFormat=new Intl.NumberFormat('fr-FR',{minimumFractionDigits:2,maximu
 const moneyFormat=new Intl.NumberFormat('fr-FR',{minimumFractionDigits:4,maximumFractionDigits:5});
 const compact=n=>n>=1e6?fr.format(n/1e6)+'M':n>=1e3?fr.format(n/1e3)+'K':fr.format(n);
 const bufferShare=0.15;
-const limits={model:'GPT-6 Sol',capacity:1128000,cached:202500,compare:true};
+const limits={model:'GPT-6 Sol',capacity:1128000,cached:200000};
 let toastTimer;
 function selectedModel(){return MODELS.find(m=>m.name===$('model').value)||MODELS[0]}
 function effectiveLimit(){return Number($('capacity').value)*(1-bufferShare)}
@@ -214,8 +258,8 @@ function update(){const model=selectedModel(),capacity=Number($('capacity').valu
  $('model-provider').textContent=model.p+' · GitHub Copilot';$('model-tier').textContent=model.tier===null?'Tarif unique':'Seuil '+compact(model.tier);
  $('cached-value').textContent=compact(tokens);$('cached').style.setProperty('--fill',(tokens/Math.max(1,Number($('cached').max))*100)+'%');
  $('cached-credits').textContent=creditFormat.format(values.withCache);$('cached-usd').textContent=moneyFormat.format(values.withCache/100)+' $ US';
- $('comparison-cached').textContent=creditFormat.format(values.withCache);$('fresh-credits').textContent=creditFormat.format(values.withoutCache);$('dock-cost').textContent=creditFormat.format(values.withCache)+' crédits';$('dock-other').innerHTML='Sans cache<br><b>'+creditFormat.format(values.withoutCache)+' crédits</b>'; 
- const compare=$('compare').checked;$('comparison').classList.toggle('hidden',!compare);$('saving').classList.toggle('hidden',!compare);$('dock-other').classList.toggle('hidden',!compare);
+ $('fresh-credits').textContent=creditFormat.format(values.withoutCache);$('fresh-usd').textContent=moneyFormat.format(values.withoutCache/100)+' $ US';
+ $('dock-cost').textContent=creditFormat.format(values.withCache)+' crédits';$('dock-other').innerHTML='Sans cache<br><b>'+creditFormat.format(values.withoutCache)+' crédits</b>'; 
  const saved=values.withoutCache-values.withCache;const pct=values.withoutCache>0?100*saved/values.withoutCache:0;
  $('saved').textContent='−'+fr.format(pct)+' % · '+creditFormat.format(saved)+' crédits';
  $('status').textContent=model.tier===null?'Tarif unique':values.long?'Long context':'Tarif standard';$('status').classList.toggle('long',values.long);
@@ -225,10 +269,10 @@ function update(){const model=selectedModel(),capacity=Number($('capacity').valu
 }
 function updateDock(){const result=$('results-title').closest('.results');const rect=result.getBoundingClientRect();$('mobile-dock').classList.toggle('visible',window.innerWidth<=850&&rect.bottom<45)}
 function showToast(msg){const el=$('snackbar');el.textContent=msg;el.classList.add('show');clearTimeout(toastTimer);toastTimer=setTimeout(()=>el.classList.remove('show'),3200)}
-function configUrl(){const q={m:$('model').value,w:$('capacity').value,t:$('cached').value,c:$('compare').checked?1:0};return location.href.split('#')[0]+'#'+new URLSearchParams(q).toString()}
-function readConfig(){try{const raw=location.hash.slice(1);const params=new URLSearchParams(raw);let m=params.get('m'),w=params.get('w'),t=params.get('t'),c=params.get('c');if(m&&MODELS.some(model=>model.name===m))$('model').value=m;if(w&&[...$('capacity').options].some(o=>o.value===w))$('capacity').value=w;if(t!==null&&Number.isFinite(Number(t)))$('cached').value=Math.max(0,Number(t));if(c!==null)$('compare').checked=c==='1';}catch(e){}recalcSlider();update()}
+function configUrl(){const q={m:$('model').value,w:$('capacity').value,t:$('cached').value};return location.href.split('#')[0]+'#'+new URLSearchParams(q).toString()}
+function readConfig(){try{const raw=location.hash.slice(1);const params=new URLSearchParams(raw);let m=params.get('m'),w=params.get('w'),t=params.get('t');if(m&&MODELS.some(model=>model.name===m))$('model').value=m;if(w&&[...$('capacity').options].some(o=>o.value===w))$('capacity').value=w;if(t!==null&&Number.isFinite(Number(t)))$('cached').value=Math.max(0,Number(t));}catch(e){}recalcSlider();update()}
 function init(){const select=$('model');for(const p of ['OpenAI','Anthropic','Google']){const group=document.createElement('optgroup');group.label=p;for(const model of MODELS.filter(m=>m.p===p)){const o=document.createElement('option');o.value=model.name;o.textContent=model.name;group.append(o)}select.append(group)}$('model').value=limits.model;
- $('model').addEventListener('change',update);$('capacity').addEventListener('change',()=>{const clamped=recalcSlider();update();if(clamped)showToast('Contexte ajusté à la nouvelle capacité disponible.')});$('cached').addEventListener('input',update);$('compare').addEventListener('change',update);
+ $('model').addEventListener('change',update);$('capacity').addEventListener('change',()=>{const clamped=recalcSlider();update();if(clamped)showToast('Contexte ajusté à la nouvelle capacité disponible.')});$('cached').addEventListener('input',update);
  $('share').addEventListener('click',async()=>{const url=configUrl();try{if(navigator.clipboard&&location.protocol!=='file:'){await navigator.clipboard.writeText(url);showToast('Lien de la simulation copié.')}else{location.hash=url.split('#')[1];showToast('Configuration ajoutée à l’URL : publiez le fichier pour partager ce lien.')}}catch(e){location.hash=url.split('#')[1];showToast('La configuration est dans l’URL.')}});
  readConfig();window.addEventListener('hashchange',readConfig);window.addEventListener('scroll',updateDock,{passive:true});window.addEventListener('resize',updateDock);updateDock()}
 init();
